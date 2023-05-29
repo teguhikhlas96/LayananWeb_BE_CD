@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -14,5 +16,9 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    // return $router->app->version();
+    // return "hello world";
+    $users = User::all();
+
+    return $users;
 });
