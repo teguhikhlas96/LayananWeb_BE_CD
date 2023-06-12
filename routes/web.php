@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\User;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
@@ -16,9 +15,15 @@ use App\Models\User;
 */
 
 $router->get('/', function () use ($router) {
-    // return $router->app->version();
-    // return "hello world";
     $users = User::all();
 
-    return $users;
+    // You can return the data or perform any other operations
+    return response()->json($users);
 });
+
+/** @var \Laravel\Lumen\Routing\Router $router */
+
+$router->post('/register', 'AuthController@register');
+$router->post('/login', 'AuthController@login');
+$router->get('/user', ['middleware' => 'auth', 'uses' => 'AuthController@user']);
+
